@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>404 · Scene not found · Monty</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+  @font-face{font-family:"Unbounded";font-weight:200 900;font-display:swap;src:url(/monty-redesign-landing/fonts/Unbounded-var-cyrillic.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+  @font-face{font-family:"Unbounded";font-weight:200 900;font-display:swap;src:url(/monty-redesign-landing/fonts/Unbounded-var-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+  @font-face{font-family:"Inter";font-weight:500;font-display:swap;src:url(/monty-redesign-landing/fonts/Inter-500-cyrillic.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+  @font-face{font-family:"Inter";font-weight:500;font-display:swap;src:url(/monty-redesign-landing/fonts/Inter-500-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+  *{box-sizing:border-box}
+  html{background:#100F0C}
+  body{margin:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;background:#100F0C;color:#F4F1E8;font-family:"Inter","Noto Sans KR","Noto Sans SC",system-ui,sans-serif;padding:48px 16px;overflow-x:clip}
+  main{width:100%;max-width:720px;margin:0 auto}
+  h1{margin:0;font:800 clamp(88px,22vw,180px)/.95 "Unbounded",system-ui,sans-serif;display:flex;align-items:center}
+  .nana{width:1em;height:.78em;cursor:pointer;transform-origin:50% 55%}
+  .nana.spin{animation:spin .7s cubic-bezier(.3,1.4,.6,1) 1}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  p.joke{margin:28px 0 0;max-width:44ch;font-size:clamp(18px,2.4vw,22px);line-height:1.45}
+  p.sub{display:none}
+  .cta{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:32px}
+  .btn{display:inline-flex;text-decoration:none;font-size:16px;font-weight:500}
+  .btn.b{border-radius:999px;padding:17px 30px;background:#FFD21E;color:#14130F}
+  .btn.g{color:#A5A094}
+  .btn.g:hover{color:#F4F1E8}
+  .fall{position:fixed;top:-60px;font-size:34px;pointer-events:none;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(115vh) rotate(340deg)}}
+  @media (prefers-reduced-motion:reduce){.nana.spin,.fall{animation:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>4<svg id="nana" class="nana" viewBox="8 23 112 86" xmlns="http://www.w3.org/2000/svg" aria-label="0">
+  <circle cx="30" cy="52" r="19" fill="#FBF7EF"/><circle cx="98" cy="52" r="19" fill="#FBF7EF"/>
+  <circle cx="30" cy="52" r="9" fill="#FFD21E"/><circle cx="98" cy="52" r="9" fill="#FFD21E"/>
+  <rect x="28" y="26" width="72" height="80" rx="36" fill="#FBF7EF"/>
+  <g stroke="#161512" stroke-width="4.5" stroke-linecap="round">
+    <path d="M46 46 l10 10 M56 46 l-10 10"/>
+    <path d="M72 46 l10 10 M82 46 l-10 10"/>
+  </g>
+  <circle cx="64" cy="82" r="18" fill="#161512"/>
+  <path d="M59 74 L59 90 L74 82 Z" fill="#FFD21E"/>
+</svg>4</h1>
+
+<p class="joke" id="joke">This scene didn't survive the edit. Monty cut it like a bad take.</p>
+<p class="sub" id="sub">The page you're after was never in the final export.</p>
+
+<div class="cta">
+  <a class="btn b" id="cta1" href="https://app.monty.fast/">Make a video with Monty</a>
+  <a class="btn g" id="cta2" href="/">Back to homepage</a>
+</div>
+</main>
+
+<script>
+(function(){
+  var L={
+    en:{badge:"Scene not found",joke:"This scene didn't survive the edit. Monty cut it like a bad take.",sub:"The page you're after was never in the final export.",cta1:"Make a video with Monty",cta2:"Back to homepage"},
+    ru:{badge:"Сцена не найдена",joke:"Эта сцена не пережила монтаж. Monty вырезал её как лишний дубль.",sub:"Страницы, которую ты ищешь, в финальном экспорте не было.",cta1:"Собрать ролик с Monty",cta2:"На главную"},
+    es:{badge:"Escena no encontrada",joke:"Esta escena no sobrevivió al montaje. Monty la cortó como una toma fallida.",sub:"La página que buscas nunca llegó a la exportación final.",cta1:"Crear un vídeo con Monty",cta2:"A la página principal"},
+    ko:{badge:"장면을 찾을 수 없어요",joke:"이 장면은 편집에서 살아남지 못했어요. 몬티가 NG 컷으로 잘라냈거든요.",sub:"찾으시는 페이지는 최종 편집본에 없었어요.",cta1:"몬티로 영상 만들기",cta2:"홈으로"},
+    zh:{badge:"找不到这一幕",joke:"这一幕没能活过剪辑，Monty 把它当废镜头剪掉了。",sub:"你要找的页面从没进过成片。",cta1:"用 Monty 做视频",cta2:"回到首页"}
+  }
+  var langs=["ru","ko","zh","es"]
+  var seg=location.pathname.split("/")[2]
+  var lang=langs.indexOf(seg)>=0?seg:(function(){var n=(navigator.language||"en").slice(0,2);return L[n]?n:"en"})()
+  var c=L[lang]
+  // Bind orphan prepositions to the next word with a non-breaking space so a
+  // short word never dangles at a line end (RU "висячий предлог" rule; en/es
+  // too). No lookbehind - old Safari throws on it - so we replace until stable.
+  function bindOrphans(s){
+    if(lang==="ko"||lang==="zh")return s
+    var w=lang==="ru"?"[А-ЯЁа-яё]{1,2}|для|или|как|что|при|над|под|про|без|обо|изо|чем"
+      :lang==="es"?"a|e|o|y|u|de|en|el|la|lo|un|su|tu|al|se|si|no|es|ni|con|por|del|los|las|una|que|para|más|mi|tú"
+      :"a|an|the|to|of|in|on|at|by|is|it|or|as|we|he|so|up|my|no|and|for|but|our|you|are|was|per|via"
+    var re=new RegExp("(^|[\s(«\"„“¿¡])("+w+")\u0020","gi"),p=""
+    while(p!==s){p=s;s=s.replace(re,"$1$2 ")}
+    return s
+  }
+  document.documentElement.lang=lang
+  ;["joke","sub","cta1","cta2"].forEach(function(id){document.getElementById(id).textContent=bindOrphans(c[id])})
+  document.getElementById("cta1").href="https://app.monty.fast/?lang="+lang
+  document.getElementById("cta2").href=lang==="en"?"/monty-redesign-landing/":"/monty-redesign-landing/"+lang+"/"
+
+  // easter egg: poke the mascot standing in for the zero. Third poke rains bananas.
+  var nana=document.getElementById("nana"),pokes=0
+  nana.addEventListener("click",function(){
+    nana.classList.remove("spin");void nana.offsetWidth;nana.classList.add("spin")
+    if(++pokes%3)return
+    for(var i=0;i<18;i++){
+      var b=document.createElement("span");b.className="fall";b.textContent="🍌"
+      b.style.left=Math.random()*100+"vw"
+      b.style.animationDuration=(1.6+Math.random()*1.8)+"s"
+      b.style.animationDelay=(Math.random()*.7)+"s"
+      b.style.fontSize=(24+Math.random()*26)+"px"
+      document.body.appendChild(b)
+      setTimeout(function(el){return function(){el.remove()}}(b),4500)
+    }
+  })
+})()
+</script>
+</body>
+</html>
